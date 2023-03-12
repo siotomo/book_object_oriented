@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class Gear
-  attr_accessor :chainring, :cog, :rim, :tire
+  attr_accessor :chainring, :cog, :wheel
 
   def initialize(chainring, cog, rim, tire)
     @chainring = chainring
     @cog = cog
-    @rim = rim
-    @tire = tire
+    @wheel = Wheel.new(rim, tire)
   end
 
   def ratio
@@ -15,11 +14,17 @@ class Gear
   end
 
   def gear_inch
-    ratio * (rim + tire * 2)
+    ratio * wheel.diameter
+  end
+
+  # OpenStructでWheelクラスを定義して、設計判断下すまでの留保
+  Wheel = Struct.new(:rim, :tire) do
+    def diameter
+      rim + (tire * 2)
+    end
   end
 end
 
-gear = Gear.new(51, 11) # error
 gear = Gear.new(51, 11, 2, 10)
 
 p gear.gear_inch
