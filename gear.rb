@@ -6,6 +6,8 @@ class Gear
   attr_accessor :chainring, :cog, :wheel
 
   def initialize(args)
+    args = defaults.merge(args)
+
     @chainring = args[:chainring]
     @cog = args[:cog]
     @wheel = args[:wheel]
@@ -23,6 +25,13 @@ class Gear
   # Wheelのdiamterメソッドへの依存がここで止まる
   def diameter
     wheel.diameter
+  end
+
+  def defaults
+    {
+      chainring: 20,
+      cog: 20
+    }
   end
 end
 
