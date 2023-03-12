@@ -6,9 +6,14 @@ class RevealingReference
     @wheels = wheelify(data)
   end
 
-  # diametersはmapを引き受け、rimとtireメソッドに答えられるオブジェクトwheelに依存
+  # diametersはmapに応えられることと、diameterとそれが引数wheelを取ることに依存
   def diameters
-    @wheels.map { |wheel| wheel.rim + wheel.tire * 2 }
+    @wheels.map { |wheel| diameter(wheel) }
+  end
+
+  # wheelがどのようにdiameterを算出するかに依存
+  def diameter(wheel)
+    wheel.rim + wheel.tire * 2
   end
 
   Wheel = Struct.new(:rim, :tire)
