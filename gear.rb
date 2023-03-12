@@ -5,21 +5,23 @@ require_relative 'wheel'
 class Gear
   attr_accessor :chainring, :cog, :wheel
 
-  def initialize(chainring, cog, rim, tire)
+  def initialize(chainring, cog, wheel)
     @chainring = chainring
     @cog = cog
-    @wheel = Wheel.new(rim, tire)
+    @wheel = wheel
   end
 
   def ratio
     chainring / cog.to_f
   end
 
+  # wheelは「diameter」に応答できるダック という依存のみに減少
   def gear_inch
     ratio * wheel.diameter
   end
 end
 
-gear = Gear.new(51, 11, 2, 10)
+wheel = Wheel.new(2, 10)
+gear = Gear.new(51, 11, wheel)
 
 p gear.gear_inch
