@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'wheel'
+
 class Gear
   attr_accessor :chainring, :cog, :wheel
 
@@ -15,13 +17,6 @@ class Gear
 
   def gear_inch
     ratio * wheel.diameter
-  end
-
-  # OpenStructでWheelクラスを定義して、設計判断下すまでの留保
-  Wheel = Struct.new(:rim, :tire) do
-    def diameter
-      rim + (tire * 2)
-    end
   end
 end
 

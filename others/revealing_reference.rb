@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 # Wheelを2次元配列の情報から作成
 
 class RevealingReference
   attr_reader :wheels
+
   def initialize(data)
     @wheels = wheelify(data)
   end
@@ -26,6 +29,6 @@ class RevealingReference
   end
 end
 
-data = [[1,2], [3,4]]
+data = [[1, 2], [3, 4]]
 revealing_reference = RevealingReference.new(data)
 p revealing_reference.diameters
