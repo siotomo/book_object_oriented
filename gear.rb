@@ -15,9 +15,14 @@ class Gear
     chainring / cog.to_f
   end
 
-  # wheelは「diameter」に応答できるダック という依存のみに減少
+  # selfに対してのみメッセージを送ることで依存を減らす
   def gear_inch
-    ratio * wheel.diameter
+    ratio * diameter
+  end
+
+  # Wheelのdiamterメソッドへの依存がここで止まる
+  def diameter
+    wheel.diameter
   end
 end
 
