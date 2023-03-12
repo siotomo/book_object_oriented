@@ -5,10 +5,10 @@ require_relative 'wheel'
 class Gear
   attr_accessor :chainring, :cog, :wheel
 
-  def initialize(chainring, cog, wheel)
-    @chainring = chainring
-    @cog = cog
-    @wheel = wheel
+  def initialize(args)
+    @chainring = args[:chainring]
+    @cog = args[:cog]
+    @wheel = args[:wheel]
   end
 
   def ratio
@@ -27,6 +27,10 @@ class Gear
 end
 
 wheel = Wheel.new(2, 10)
-gear = Gear.new(51, 11, wheel)
+gear = Gear.new(
+  chainring: 51,
+  cog: 11,
+  wheel: wheel
+)
 
 p gear.gear_inch
